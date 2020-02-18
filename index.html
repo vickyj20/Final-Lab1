@@ -29,7 +29,7 @@ h3 {
 
 var map = new mapboxgl.Map({
   container: 'map', // container id
-  style: 'your-style-url' // replace this with your style URL
+  style: 'mapbox://styles/vickyj20/ck6rc08lv0vl11justckhaj31' // replace this with your style URL
 });
 
 
@@ -99,6 +99,22 @@ var map = new mapboxgl.Map({
   container: 'map', // container id
   style: 'mapbox://styles/vickyj20/ck6rc08lv0vl11justckhaj31' // replace this with your style URL
 });
+      map.on('click', function(e) {
+  var features = map.queryRenderedFeatures(e.point, {
+    layers: ['Community-Gardens'] // replace this with the name of the layer
+  });
+
+  if (!features.length) {
+    return;
+  }
+
+  var feature = features[0];
+
+  var popup = new mapboxgl.Popup({ offset: [0, -15] })
+    .setLngLat(feature.geometry.coordinates)
+    .setHTML('<h3>' + feature.properties.title + '</h3><p>' + feature.properties.description + '</p>')
+    .addTo(map);
+});
 
 map.on('load', function() {
 var layers = ['0-10', '10-20', '20-50', '50-100', '100-200', '200-500', '500-1000', '1000+'];
@@ -117,22 +133,6 @@ for (i = 0; i < layers.length; i++) {
   item.appendChild(value);
   legend.appendChild(item);
 }
-});
-    map.on('click', function(e) {
-  var features = map.queryRenderedFeatures(e.point, {
-    layers: ['Community-Gardens'] // replace this with the name of the layer
-  });
-
-  if (!features.length) {
-    return;
-  }
-
-  var feature = features[0];
-
-  var popup = new mapboxgl.Popup({ offset: [0, -15] })
-    .setLngLat(feature.geometry.coordinates)
-    .setHTML('<h3>' + feature.properties.title + '</h3><p>' + feature.properties.description + '</p>')
-    .addTo(map);
 });
 
 </script>
