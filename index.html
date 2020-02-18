@@ -118,9 +118,7 @@ for (i = 0; i < layers.length; i++) {
   legend.appendChild(item);
 }
 });
-
-</script>
-  map.on('click', function(e) {
+    map.on('click', function(e) {
   var features = map.queryRenderedFeatures(e.point, {
     layers: ['Community-Gardens'] // replace this with the name of the layer
   });
@@ -136,5 +134,7 @@ for (i = 0; i < layers.length; i++) {
     .setHTML('<h3>' + feature.properties.title + '</h3><p>' + feature.properties.description + '</p>')
     .addTo(map);
 });
+
+</script>
 </body>
 </html>
