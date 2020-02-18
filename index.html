@@ -109,7 +109,7 @@ var map = new mapboxgl.Map({
 
   var popup = new mapboxgl.Popup({ offset: [0, -15] })
     .setLngLat(feature.geometry.coordinates)
-    .setHTML('<h3>' + feature.properties.names + '</h3><p>' + feature.properties.description + '</p>')
+    .setHTML('<h3>' + feature.properties.mapid + '</h3><p>' + feature.properties.description + '</p>')
     .addTo(map);
 });
 
